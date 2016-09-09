@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<project name="TriNoteFX" default="do-deploy" basedir="."  xmlns:fx="javafx:com.sun.javafx.tools.ant">
+	<target name="init-fx-tasks">
+		<path id="fxant">
+			<filelist>
+				<file name="${java.home}\..\lib\ant-javafx.jar"/>
+				<file name="${java.home}\lib\jfxrt.jar"/>
+			</filelist>
+		</path>
+	
+		<taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
+			uri="javafx:com.sun.javafx.tools.ant"
+			classpathref="fxant"/>
+	</target>
+	<target name="setup-staging-area">
+		<delete dir="externalLibs" />
+		<delete dir="project" />
+		<delete dir="projectRefs" />
+	
+		<mkdir dir="externalLibs" />
+	
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-common-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="jetty-server-9.2.9.v20150224.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="concurrentlinkedhashmap-lru-1.4.2.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-io-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="commons-io-2.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="lucene-analyzers-common-5.5.0.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="jersey-multipart-1.19.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-graph-matching-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="jersey-core-1.19.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="opencsv-2.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-cypher-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-security-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-cypher-frontend-2.3-2.3.5.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-cypher-compiler-2.3-2.3.5.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="commons-beanutils-1.8.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="jline-2.12.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="scala-library-2.11.8.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="lucene-core-5.5.0.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="jetty-xml-9.2.9.v20150224.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-command-line-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-import-tool-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-primitive-collections-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="server-api-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="jsr311-api-1.1.2.r612.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="jersey-server-1.19.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-cypher-compiler-3.0-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="jackson-mapper-asl-1.9.13.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="commons-logging-1.1.1.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="jetty-webapp-9.2.9.v20150224.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="netty-all-4.0.28.Final.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="jetty-http-9.2.9.v20150224.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="jersey-servlet-1.19.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="jetty-util-9.2.9.v20150224.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="jackson-core-asl-1.9.13.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-dbms-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-server-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="mimepull-1.9.3.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-cypher-frontend-3.0-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-lucene-index-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="lucene-queryparser-5.5.0.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-codegen-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="lucene-codecs-5.5.0.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="bcprov-jdk15on-1.53.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="commons-digester-2.1.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="parboiled-scala_2.11-1.1.7.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-graph-algo-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-browser-1.1.8.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-lucene-upgrade-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-kernel-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-collections-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="javax.servlet-api-3.1.0.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="asm-5.0.2.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="jackson-jaxrs-1.9.13.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-resource-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-graphdb-api-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-unsafe-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-shell-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Documents/lib/database">
+				<filename name="sqlite-jdbc-3.8.11.2.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="scala-reflect-2.11.8.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="jetty-io-9.2.9.v20150224.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="commons-configuration-1.10.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="jetty-security-9.2.9.v20150224.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="commons-lang3-3.3.2.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-jmx-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-logging-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-udc-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-csv-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="bcpkix-jdk15on-1.53.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="commons-lang-2.6.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="jetty-servlet-9.2.9.v20150224.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-consistency-check-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="neo4j-bolt-3.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="rhino-1.7R4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/paulm/Tools/neo4j-community-3.0.4/lib">
+				<filename name="parboiled-core-1.1.7.jar"/>
+			</fileset>
+		</copy>
+	
+		<mkdir dir="project" />
+		<copy todir="project">
+			<fileset dir="/Users/paulm/Documents/workspace/neon/TriNoteFX">
+				<include name="src/**" />
+			</fileset>
+		</copy>
+	
+		<mkdir dir="projectRefs" />
+	</target>
+	<target name='do-compile'>
+		<delete dir="build" />
+		<mkdir dir="build/src" />
+		<mkdir dir="build/libs" />
+		<mkdir dir="build/classes" />
+	
+		<!-- Copy project-libs references -->
+		<copy todir="build/libs">
+			<fileset dir="externalLibs">
+				<include name="neo4j-graph-algo-3.0.4.jar"/>
+				<include name="lucene-analyzers-common-5.5.0.jar"/>
+				<include name="neo4j-collections-3.0.4.jar"/>
+				<include name="commons-digester-2.1.jar"/>
+				<include name="commons-configuration-1.10.jar"/>
+				<include name="neo4j-command-line-3.0.4.jar"/>
+				<include name="neo4j-graph-matching-3.0.4.jar"/>
+				<include name="neo4j-cypher-frontend-2.3-2.3.5.jar"/>
+				<include name="commons-beanutils-1.8.3.jar"/>
+				<include name="neo4j-cypher-3.0.4.jar"/>
+				<include name="jetty-xml-9.2.9.v20150224.jar"/>
+				<include name="neo4j-unsafe-3.0.4.jar"/>
+				<include name="jetty-io-9.2.9.v20150224.jar"/>
+				<include name="jline-2.12.jar"/>
+				<include name="scala-reflect-2.11.8.jar"/>
+				<include name="jackson-core-asl-1.9.13.jar"/>
+				<include name="jersey-core-1.19.jar"/>
+				<include name="neo4j-dbms-3.0.4.jar"/>
+				<include name="javax.servlet-api-3.1.0.jar"/>
+				<include name="lucene-queryparser-5.5.0.jar"/>
+				<include name="commons-lang3-3.3.2.jar"/>
+				<include name="neo4j-io-3.0.4.jar"/>
+				<include name="scala-library-2.11.8.jar"/>
+				<include name="rhino-1.7R4.jar"/>
+				<include name="neo4j-browser-1.1.8.jar"/>
+				<include name="neo4j-logging-3.0.4.jar"/>
+				<include name="jetty-server-9.2.9.v20150224.jar"/>
+				<include name="neo4j-common-3.0.4.jar"/>
+				<include name="jetty-security-9.2.9.v20150224.jar"/>
+				<include name="lucene-codecs-5.5.0.jar"/>
+				<include name="mimepull-1.9.3.jar"/>
+				<include name="concurrentlinkedhashmap-lru-1.4.2.jar"/>
+				<include name="jsr311-api-1.1.2.r612.jar"/>
+				<include name="neo4j-cypher-compiler-3.0-3.0.4.jar"/>
+				<include name="neo4j-csv-3.0.4.jar"/>
+				<include name="jersey-servlet-1.19.jar"/>
+				<include name="bcprov-jdk15on-1.53.jar"/>
+				<include name="jetty-http-9.2.9.v20150224.jar"/>
+				<include name="asm-5.0.2.jar"/>
+				<include name="neo4j-cypher-compiler-2.3-2.3.5.jar"/>
+				<include name="neo4j-import-tool-3.0.4.jar"/>
+				<include name="neo4j-security-3.0.4.jar"/>
+				<include name="opencsv-2.3.jar"/>
+				<include name="neo4j-codegen-3.0.4.jar"/>
+				<include name="neo4j-kernel-3.0.4.jar"/>
+				<include name="sqlite-jdbc-3.8.11.2.jar"/>
+				<include name="neo4j-graphdb-api-3.0.4.jar"/>
+				<include name="bcpkix-jdk15on-1.53.jar"/>
+				<include name="commons-io-2.4.jar"/>
+				<include name="commons-logging-1.1.1.jar"/>
+				<include name="parboiled-scala_2.11-1.1.7.jar"/>
+				<include name="neo4j-server-3.0.4.jar"/>
+				<include name="neo4j-lucene-upgrade-3.0.4.jar"/>
+				<include name="server-api-3.0.4.jar"/>
+				<include name="jersey-multipart-1.19.jar"/>
+				<include name="neo4j-consistency-check-3.0.4.jar"/>
+				<include name="neo4j-jmx-3.0.4.jar"/>
+				<include name="neo4j-udc-3.0.4.jar"/>
+				<include name="parboiled-core-1.1.7.jar"/>
+				<include name="neo4j-bolt-3.0.4.jar"/>
+				<include name="jackson-jaxrs-1.9.13.jar"/>
+				<include name="jackson-mapper-asl-1.9.13.jar"/>
+				<include name="lucene-core-5.5.0.jar"/>
+				<include name="neo4j-lucene-index-3.0.4.jar"/>
+				<include name="commons-lang-2.6.jar"/>
+				<include name="neo4j-resource-3.0.4.jar"/>
+				<include name="netty-all-4.0.28.Final.jar"/>
+				<include name="jetty-util-9.2.9.v20150224.jar"/>
+				<include name="neo4j-primitive-collections-3.0.4.jar"/>
+				<include name="neo4j-shell-3.0.4.jar"/>
+				<include name="jetty-servlet-9.2.9.v20150224.jar"/>
+				<include name="neo4j-cypher-frontend-3.0-3.0.4.jar"/>
+				<include name="jersey-server-1.19.jar"/>
+				<include name="jetty-webapp-9.2.9.v20150224.jar"/>
+			</fileset>
+		</copy>
+	
+		<!-- Copy project references -->
+	
+		<!-- Copy project sources itself -->
+		<copy todir="build/src">
+			<fileset dir="project/src">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+	
+		<javac includeantruntime="false" source="1.8" target="1.8" srcdir="build/src" destdir="build/classes" encoding="UTF-8">
+			<classpath>
+				<fileset dir="build/libs">
+					<include name="*"/>
+				</fileset>
+			</classpath>
+		</javac>
+	
+		<!-- Copy over none Java-Files -->
+		<copy todir="build/classes">
+		<fileset dir="project/src">
+			<exclude name="**/*.java"/>
+		</fileset>
+		</copy>
+	
+	
+	</target>
+	<target name="do-deploy" depends="setup-staging-area, do-compile, init-fx-tasks">
+		<delete file="dist"/>
+		<delete file="deploy" />
+	
+		<mkdir dir="dist" />
+		<mkdir dir="dist/libs" />
+	
+		<copy todir="dist/libs">
+			<fileset dir="externalLibs">
+				<include name="*" />
+			</fileset>
+		</copy>
+	
+	
+		<fx:resources id="appRes">
+			<fx:fileset dir="dist" includes="TriNoteFX.jar"/>
+			<fx:fileset dir="dist" includes="libs/*"/>
+		</fx:resources>
+	
+		<fx:application id="fxApplication"
+			name="TriNote"
+			mainClass="com.glensoft.trinote.Main"
+			toolkit="fx"
+		/>
+	
+		<mkdir dir="build/classes/META-INF" />
+	
+	
+	
+		<fx:jar destfile="dist/TriNoteFX.jar">
+			<fx:application refid="fxApplication"/>
+			<fileset dir="build/classes">
+			</fileset>
+			<fx:resources refid="appRes"/>
+	
+			<manifest>
+				<attribute name="Implementation-Vendor" value="Glensoft"/>
+				<attribute name="Implementation-Title" value="TriNote"/>
+				<attribute name="Implementation-Version" value="1.0.0"/>
+				<attribute name="JavaFX-Feature-Proxy" value="None"/>
+			</manifest>
+		</fx:jar>
+	
+	
+		<mkdir dir="deploy" />
+		<!-- Need to use ${basedir} because somehow the ant task is calculating the directory differently -->
+		<fx:deploy
+			embedJNLP="false"
+			extension="false"
+			includeDT="false"
+			offlineAllowed="true"
+			outdir="${basedir}/deploy"
+			outfile="TriNoteFX" nativeBundles="dmg"
+			updatemode="background" >
+	
+			<fx:platform basedir="${java.home}"/>
+			<fx:info title="TriNoteFX" vendor="Glensoft"/>
+	
+			<fx:application refId="fxApplication"/>
+			<fx:resources refid="appRes"/>
+		</fx:deploy>
+	
+	
+	</target>
+</project>
