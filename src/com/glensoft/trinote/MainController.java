@@ -1,26 +1,21 @@
 package com.glensoft.trinote;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.glensoft.trinote.data.*;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Callback;
 
 public class MainController implements Initializable{
@@ -33,7 +28,13 @@ public class MainController implements Initializable{
 	
 	@FXML
 	private ListView<NoteDetail> lstNotedetails;
+	
+	private Stage _stage;
 	 
+	public void SetStage(Stage stage)
+	{
+		this._stage = stage;
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -63,24 +64,21 @@ public class MainController implements Initializable{
 	       lstNotebooks.setCellFactory(new Callback<ListView<NoteBook>, ListCell<NoteBook>>(){
 	            @Override
 	            public ListCell<NoteBook> call(ListView<NoteBook> p) {
-	                ListCell<NoteBook> cell = new ListCell<NoteBook>(){
-	                    @Override
-	                    protected void updateItem(NoteBook t, boolean bln) {
-	                        super.updateItem(t, bln);
-	                        if (t != null) {
-	                            setText(t.getName());
-	                            setOnMouseClicked(null);
-	                            
-	                        }
-	                        else
-	                        {
-	                        	setText("");
-	                        	setOnMouseClicked(null);
-	                        }
-	                    }	
-	                    
-	                    
-	                };
+				ListCell<NoteBook> cell = new ListCell<NoteBook>() {
+					@Override
+					protected void updateItem(NoteBook t, boolean bln) {
+						super.updateItem(t, bln);
+						if (t != null) {
+							setText(t.getName());
+							setOnMouseClicked(null);
+
+						} else {
+							setText("");
+							setOnMouseClicked(null);
+						}
+					}
+
+				};
 	                return cell;
 	            }
 	            
@@ -121,29 +119,12 @@ public class MainController implements Initializable{
 	                            {
 	                            	if(event.getClickCount() > 1)
 	                            	{
-	                            		System.out.println(lstNotedetails.getSelectionModel().getSelectedItem().getName());
-	                            	
-	                            	
-	                            		FXMLLoader loader = new FXMLLoader();
-	                            		BorderPane root;
-										try {
-											root = (BorderPane)FXMLLoader.load(getClass().getResource("NoteDetailEdit.fxml"));
-											// Create the dialog Stage.
-		                                    Stage dialogStage = new Stage();
-		                                    dialogStage.setTitle("Edit Note");
-		                                    dialogStage.initModality(Modality.WINDOW_MODAL);
-		                                    dialogStage.initOwner(null);
-		                                    Scene scene = new Scene(root);
-		                                    dialogStage.setScene(scene);
-		                                    dialogStage.showAndWait();
-		                                    
-										} catch (IOException e) {
-											// TODO Auto-generated catch block
-											e.printStackTrace();
-										}
+	                            		NoteDetailEditDialogManager mng = new NoteDetailEditDialogManager();
+	                            		Node eventSource = (Node)event.getSource();
+	                            		Scene parentScene = eventSource.getScene();
+	                            		Window parentWin = parentScene.getWindow();
+	                            		mng.ShowDialog(parentWin, lstNotedetails.getSelectionModel().getSelectedItem());
 	                            	}
-
-	                                    
 	                            });
 	                        }
 	                        else
