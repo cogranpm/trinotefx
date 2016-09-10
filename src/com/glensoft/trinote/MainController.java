@@ -13,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -29,11 +30,14 @@ public class MainController implements Initializable{
 	@FXML
 	private ListView<NoteDetail> lstNotedetails;
 	
-	private Stage _stage;
-	 
-	public void SetStage(Stage stage)
+	@FXML
+	private MenuBar mnuMain;
+	
+	@FXML
+	private void handleFileMenuQuit()
 	{
-		this._stage = stage;
+		Stage stage = (Stage)mnuMain.getScene().getWindow();
+		stage.close();
 	}
 
 	@Override

@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.glensoft.trinote.MainController">
+  <top>
+     
+  </top>
    <center>
       <SplitPane dividerPositions="0.5, 0.5" BorderPane.alignment="CENTER">
          <items>
@@ -14,4 +21,18 @@
          </items>
       </SplitPane>
    </center>
+   <top>
+      <MenuBar fx:id="mnuMain" BorderPane.alignment="TOP_LEFT">
+        <menus>
+          <Menu fx:id="mnuFile" text="_File">
+            <items>
+              <MenuItem fx:id="mnuFileQuit" onAction="#handleFileMenuQuit" text="_Quit" />
+            </items>
+          </Menu>
+        </menus>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </MenuBar>
+   </top>
 </BorderPane>
