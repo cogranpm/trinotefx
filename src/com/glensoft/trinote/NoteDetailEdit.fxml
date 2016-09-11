@@ -2,18 +2,49 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="435.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.glensoft.trinote.NoteDetailEditController">
    <center>
       <SplitPane dividerPositions="0.13404825737265416, 0.6300268096514745" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
          <items>
-         	<TextArea fx:id="txtComments" onKeyTyped="#handleKeyTyped" prefHeight="200.0" prefWidth="200.0" />
-            <TextArea fx:id="txtBody" onKeyTyped="#handleKeyTyped" prefHeight="200.0" prefWidth="200.0" />
-            <TextArea fx:id="txtSourceCode" onKeyTyped="#handleKeyTyped" prefHeight="200.0" prefWidth="200.0" />
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Comments" />
+               	<TextArea fx:id="txtComments" onKeyTyped="#handleKeyTyped" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="Arial" size="11.0" />
+                     </font>
+                  </TextArea>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Body" />
+                  <TextArea fx:id="txtBody" onKeyTyped="#handleKeyTyped" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="Times New Roman" size="11.0" />
+                     </font>
+                  </TextArea>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Example" />
+                  <TextArea fx:id="txtSourceCode" onKeyTyped="#handleKeyTyped" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="Monaco" size="11.0" />
+                     </font>
+                  </TextArea>
+               </children>
+            </VBox>
          </items>
       </SplitPane>
    </center>
@@ -28,4 +59,12 @@
          </BorderPane.margin>
       </HBox>
    </bottom>
+   <top>
+      <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="39.0" prefWidth="449.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Name" />
+            <TextField fx:id="txtName" promptText="Enter Name" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+   </top>
 </BorderPane>

@@ -1,23 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.glensoft.trinote.MainController">
   <top>
      
   </top>
    <center>
-      <SplitPane dividerPositions="0.5, 0.5" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.32441471571906355, 0.6839464882943144" BorderPane.alignment="CENTER">
          <items>
-            <ListView fx:id="lstNotebooks" minWidth="-Infinity" />
-            <ListView fx:id="lstNoteheaders" minWidth="-Infinity" />
-            <ListView fx:id="lstNotedetails" minWidth="-Infinity" />
+            <VBox spacing="10.0">
+               <children>
+                  <HBox prefHeight="28.0" prefWidth="207.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label maxHeight="25.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="21.0" prefWidth="111.0" text="Notebooks" HBox.hgrow="NEVER" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="btnNewNotebook" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="+" HBox.hgrow="NEVER" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <ListView fx:id="lstNotebooks" maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefHeight="340.0" prefWidth="190.0" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <VBox prefHeight="369.0" prefWidth="215.0" spacing="10.0">
+               <children>
+                    <HBox prefHeight="28.0" prefWidth="207.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label maxHeight="25.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="21.0" prefWidth="111.0" text="Headings" HBox.hgrow="NEVER" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="btnNewNoteHeader" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="+" HBox.hgrow="NEVER" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                 
+                  <ListView fx:id="lstNoteheaders" minWidth="-Infinity" prefHeight="342.0" prefWidth="127.0" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <VBox prefWidth="100.0" spacing="10.0">
+               <children>
+                  <HBox prefHeight="28.0" prefWidth="207.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label maxHeight="25.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="21.0" prefWidth="111.0" text="Notes" HBox.hgrow="NEVER" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="btnNewNoteDetail" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleNewNoteDetail" prefHeight="25.0" prefWidth="37.0" text="+" HBox.hgrow="NEVER" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <ListView fx:id="lstNotedetails" minWidth="-Infinity" prefHeight="342.0" prefWidth="102.0" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
          </items>
       </SplitPane>
    </center>

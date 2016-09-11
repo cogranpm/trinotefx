@@ -91,17 +91,30 @@ public class SqliteDataProvider {
 	
 	public void putNoteDetail(NoteDetail noteDetail)
 	{
-		
+		try(PreparedStatement statement = connection.prepareStatement("insert into notedetail (NoteHeaderId, Name, Comments, Body, SourceCode) values (?, ?, ?, ?, ?)"))
+		{
+			statement.setLong(1, noteDetail.getNoteHeaderId());
+			statement.setString(2, noteDetail.getName());
+			statement.setString(3, noteDetail.getSourceCode());
+			statement.setString(4, noteDetail.getComments());
+			statement.setString(5, noteDetail.getBody());
+			statement.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	public void postNoteDetail(NoteDetail noteDetail)
 	{
-		try(PreparedStatement statement = connection.prepareStatement("update notedetail set sourcecode = ?, comments = ?, body = ? where id = ?"))
+		try(PreparedStatement statement = connection.prepareStatement("update notedetail set name = ?, sourcecode = ?, comments = ?, body = ? where id = ?"))
 		{
-			statement.setString(1, noteDetail.getSourceCode());
-			statement.setString(2, noteDetail.getComments());
-			statement.setString(3, noteDetail.getBody());
-			statement.setLong(4, noteDetail.getId());
+			statement.setString(1, noteDetail.getName());
+			statement.setString(2, noteDetail.getSourceCode());
+			statement.setString(3, noteDetail.getComments());
+			statement.setString(4, noteDetail.getBody());
+			statement.setLong(5, noteDetail.getId());
 			statement.executeUpdate();
 		}
 		catch(SQLException e)

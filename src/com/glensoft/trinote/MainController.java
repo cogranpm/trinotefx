@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
@@ -34,10 +35,30 @@ public class MainController implements Initializable{
 	private MenuBar mnuMain;
 	
 	@FXML
+	private Button btnNewNoteDetail;
+	
+	@FXML
+	private Button btnNewNoteHeader;
+	
+	@FXML
+	private Button btnNewNotebook;
+	
+	@FXML
 	private void handleFileMenuQuit()
 	{
 		Stage stage = (Stage)mnuMain.getScene().getWindow();
 		stage.close();
+	}
+	
+	@FXML
+	private void handleNewNoteDetail()
+	{
+		NoteDetail newNoteDetail = new NoteDetail(0l, lstNoteheaders.getSelectionModel().getSelectedItem().getId(), "", "", "", "");
+		NoteDetailEditDialogManager mng = new NoteDetailEditDialogManager();
+		Scene parentScene = btnNewNoteDetail.getScene();
+		Window parentWin = parentScene.getWindow();
+		mng.ShowDialog(parentWin, newNoteDetail);
+		this.refreshDetail(newNoteDetail.getNoteHeaderId());
 	}
 
 	@Override
@@ -53,14 +74,14 @@ public class MainController implements Initializable{
 	    	    	List<NoteHeader> noteheaders = Context.getInstance().getProvider().getNoteheaders(newSelection.getId());
 	    	        ObservableList<NoteHeader> lstUiNoteHeaders = FXCollections.observableList(noteheaders);
 	    	        lstNoteheaders.setItems(lstUiNoteHeaders);
+	    	        this.btnNewNoteHeader.setDisable(false);
 	    	    }
 	    	});
 	       
 	       lstNoteheaders.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
 	    	    if (newSelection != null) {
-	    	    	List<NoteDetail> notedetails = Context.getInstance().getProvider().getNotedetails(newSelection.getId());
-	    	        ObservableList<NoteDetail> lstUiNoteDetails = FXCollections.observableList(notedetails);
-	    	        lstNotedetails.setItems(lstUiNoteDetails);
+	    	    	this.refreshDetail(newSelection.getId());
+	    	    	this.btnNewNoteDetail.setDisable(false);
 	    	    }
 	    	});
 	       
@@ -85,8 +106,6 @@ public class MainController implements Initializable{
 				};
 	                return cell;
 	            }
-	            
-	            
 	            
 	        });   
 	       
@@ -150,9 +169,14 @@ public class MainController implements Initializable{
 	               System.out.println("Detected a change! ");
 	           }
 	       });     
-	       
-	       
-	 	
+
 	}
+
+    private void refreshDetail(Long noteHeaderId)
+    {
+    	List<NoteDetail> notedetails = Context.getInstance().getProvider().getNotedetails(noteHeaderId);
+        ObservableList<NoteDetail> lstUiNoteDetails = FXCollections.observableList(notedetails);
+        lstNotedetails.setItems(lstUiNoteDetails);
+    }
 	
 }

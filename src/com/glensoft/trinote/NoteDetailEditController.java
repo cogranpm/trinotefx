@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 
 public class NoteDetailEditController implements Initializable {
 	
+	@FXML
+	TextField txtName;
 
 	@FXML
 	TextArea txtBody;
@@ -45,11 +47,19 @@ public class NoteDetailEditController implements Initializable {
 	
 	@FXML
 	private void handleOK() {
-		if (this._isModelDirty) {
+		if (this._isModelDirty || (this._model.getId() == 0l)) {
+			this._model.setName(this.txtName.getText());
 			this._model.setBody(this.txtBody.getText());
 			this._model.setComments(this.txtComments.getText());
 			this._model.setSourceCode(this.txtSourceCode.getText());
-			Context.getInstance().getProvider().postNoteDetail(this._model);
+			if(this._model.getId() == 0l)
+			{
+				Context.getInstance().getProvider().putNoteDetail(this._model);
+			}
+			else
+			{
+				Context.getInstance().getProvider().postNoteDetail(this._model);
+			}
 		}
 		this._isModelDirty = false;
 		this.getStage().close();
@@ -77,9 +87,10 @@ public class NoteDetailEditController implements Initializable {
 	{
 		if (_model != null)
 		{
-		txtBody.setText(_model.getBody());
-		txtSourceCode.setText(_model.getSourceCode());
-		txtComments.setText(_model.getComments());
+			this.txtName.setText(_model.getName());
+			this.txtBody.setText(_model.getBody());
+			this.txtSourceCode.setText(_model.getSourceCode());
+			this.txtComments.setText(_model.getComments());
 		}	
 	}
 	
