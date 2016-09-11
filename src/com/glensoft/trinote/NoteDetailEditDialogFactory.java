@@ -11,7 +11,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-public class NoteDetailEditDialogManager {
+public class NoteDetailEditDialogFactory {
 	
 	private NoteDetail _noteDetail;
 	private final String TEMPLATE_NAME = "NoteDetailEdit.fxml";

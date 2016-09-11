@@ -54,7 +54,7 @@ public class MainController implements Initializable{
 	private void handleNewNoteDetail()
 	{
 		NoteDetail newNoteDetail = new NoteDetail(0l, lstNoteheaders.getSelectionModel().getSelectedItem().getId(), "", "", "", "");
-		NoteDetailEditDialogManager mng = new NoteDetailEditDialogManager();
+		NoteDetailEditDialogFactory mng = new NoteDetailEditDialogFactory();
 		Scene parentScene = btnNewNoteDetail.getScene();
 		Window parentWin = parentScene.getWindow();
 		mng.ShowDialog(parentWin, newNoteDetail);
@@ -142,7 +142,7 @@ public class MainController implements Initializable{
 	                            {
 	                            	if(event.getClickCount() > 1)
 	                            	{
-	                            		NoteDetailEditDialogManager mng = new NoteDetailEditDialogManager();
+	                            		NoteDetailEditDialogFactory mng = new NoteDetailEditDialogFactory();
 	                            		Node eventSource = (Node)event.getSource();
 	                            		Scene parentScene = eventSource.getScene();
 	                            		Window parentWin = parentScene.getWindow();
