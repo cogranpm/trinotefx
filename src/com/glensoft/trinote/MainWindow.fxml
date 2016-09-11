@@ -30,7 +30,7 @@
                         </HBox>
                         <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="btnNewNotebook" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="+" HBox.hgrow="NEVER" />
+                              <Button fx:id="btnNewNotebook" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleNewNotebook" prefHeight="29.0" prefWidth="36.0" text="+" HBox.hgrow="NEVER" />
                            </children>
                         </HBox>
                      </children>
@@ -49,7 +49,7 @@
                         </HBox>
                         <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="btnNewNoteHeader" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="+" HBox.hgrow="NEVER" />
+                              <Button fx:id="btnNewNoteHeader" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="29.0" prefWidth="36.0" text="+" HBox.hgrow="NEVER" />
                            </children>
                         </HBox>
                      </children>
@@ -69,7 +69,7 @@
                         </HBox>
                         <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="btnNewNoteDetail" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleNewNoteDetail" prefHeight="25.0" prefWidth="37.0" text="+" HBox.hgrow="NEVER" />
+                              <Button fx:id="btnNewNoteDetail" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleNewNoteDetail" prefHeight="29.0" prefWidth="36.0" text="+" HBox.hgrow="NEVER" />
                            </children>
                         </HBox>
                      </children>

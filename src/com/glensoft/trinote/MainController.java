@@ -60,14 +60,22 @@ public class MainController implements Initializable{
 		mng.ShowDialog(parentWin, newNoteDetail);
 		this.refreshDetail(newNoteDetail.getNoteHeaderId());
 	}
+	
+	@FXML 
+	private void handleNewNotebook()
+	{
+		NoteBook newNoteBook= new NoteBook(0l,"", "");
+		NotebookEditDialogFactory mng = new NotebookEditDialogFactory();
+		Scene parentScene = btnNewNotebook.getScene();
+		Window parentWin = parentScene.getWindow();
+		mng.ShowDialog(parentWin, newNoteBook);
+		this.refreshNotebooks();
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-	       List<NoteBook> notebooks = Context.getInstance().getProvider().getNotebooks();
-	       
-	       ObservableList<NoteBook> observableList = FXCollections.observableList(notebooks);
-	       lstNotebooks.setItems(observableList);
+			this.refreshNotebooks();
 	 
 	       lstNotebooks.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
 	    	    if (newSelection != null) {
@@ -160,17 +168,23 @@ public class MainController implements Initializable{
 	                return cell;
 	            }
 	        });  
-	       
+	}
 	
-	       
+	private void refreshNotebooks()
+	{
+	     List<NoteBook> notebooks = Context.getInstance().getProvider().getNotebooks();
+	     ObservableList<NoteBook> observableList = FXCollections.observableList(notebooks);
+	     lstNotebooks.setItems(observableList);
+	     /*
 	       observableList.addListener(new ListChangeListener<NoteBook>() {
 	           @Override
 	           public void onChanged(ListChangeListener.Change change) {
 	               System.out.println("Detected a change! ");
 	           }
-	       });     
-
+	       });
+	       */   
 	}
+
 
     private void refreshDetail(Long noteHeaderId)
     {

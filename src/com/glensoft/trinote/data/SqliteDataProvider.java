@@ -89,6 +89,71 @@ public class SqliteDataProvider {
 		return list;
 	}
 	
+
+	
+	public void postNoteheader(NoteHeader noteHeader)
+	{
+		try(PreparedStatement statement = connection.prepareStatement("update notedheader set name = ?, comments = ? where id = ?"))
+		{
+			statement.setString(1, noteHeader.getName());
+			statement.setString(3, noteHeader.getComments());
+			statement.setLong(5, noteHeader.getId());
+			statement.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+
+	public void putNoteheader(NoteHeader noteHeader)
+	{
+		try(PreparedStatement statement = connection.prepareStatement("insert into noteheader(NoteBookId, Name, Comments) values (?, ?, ?)"))
+		{
+			statement.setLong(1, noteHeader.getNoteBookId());
+			statement.setString(2, noteHeader.getName());
+			statement.setString(4, noteHeader.getComments());
+			
+			statement.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public void postNotebook(NoteBook noteBook)
+	{
+		try(PreparedStatement statement = connection.prepareStatement("update notebook set name = ?, comments = ? where id = ?"))
+		{
+			statement.setString(1, noteBook.getName());
+			statement.setString(2, noteBook.getComments());
+			statement.setLong(3, noteBook.getId());
+			statement.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+
+	public void putNotebook(NoteBook noteBook)
+	{
+		try(PreparedStatement statement = connection.prepareStatement("insert into notebook(Name, Comments) values (?, ?)"))
+		{
+			statement.setString(1, noteBook.getName());
+			statement.setString(2, noteBook.getComments());
+			statement.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+
 	public void putNoteDetail(NoteDetail noteDetail)
 	{
 		try(PreparedStatement statement = connection.prepareStatement("insert into notedetail (NoteHeaderId, Name, Comments, Body, SourceCode) values (?, ?, ?, ?, ?)"))
@@ -104,7 +169,8 @@ public class SqliteDataProvider {
 		{
 			e.printStackTrace();
 		}
-	}
+	}	
+	
 	
 	public void postNoteDetail(NoteDetail noteDetail)
 	{
