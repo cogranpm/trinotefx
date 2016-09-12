@@ -96,8 +96,8 @@ public class SqliteDataProvider {
 		try(PreparedStatement statement = connection.prepareStatement("update notedheader set name = ?, comments = ? where id = ?"))
 		{
 			statement.setString(1, noteHeader.getName());
-			statement.setString(3, noteHeader.getComments());
-			statement.setLong(5, noteHeader.getId());
+			statement.setString(2, noteHeader.getComments());
+			statement.setLong(3, noteHeader.getId());
 			statement.executeUpdate();
 		}
 		catch(SQLException e)
@@ -113,9 +113,19 @@ public class SqliteDataProvider {
 		{
 			statement.setLong(1, noteHeader.getNoteBookId());
 			statement.setString(2, noteHeader.getName());
-			statement.setString(4, noteHeader.getComments());
-			
+			statement.setString(3, noteHeader.getComments());
 			statement.executeUpdate();
+			try(ResultSet keys = statement.getGeneratedKeys())
+			{
+				while(keys.next())
+				{
+					noteHeader.setId(keys.getLong(1));					
+				}
+			}
+			catch(SQLException ke)
+			{
+				ke.printStackTrace();
+			}
 		}
 		catch(SQLException e)
 		{
@@ -146,6 +156,17 @@ public class SqliteDataProvider {
 			statement.setString(1, noteBook.getName());
 			statement.setString(2, noteBook.getComments());
 			statement.executeUpdate();
+			try(ResultSet keys = statement.getGeneratedKeys())
+			{
+				while(keys.next())
+				{
+					noteBook.setId(keys.getLong(1));					
+				}
+			}
+			catch(SQLException ke)
+			{
+				ke.printStackTrace();
+			}
 		}
 		catch(SQLException e)
 		{
@@ -164,6 +185,17 @@ public class SqliteDataProvider {
 			statement.setString(4, noteDetail.getComments());
 			statement.setString(5, noteDetail.getBody());
 			statement.executeUpdate();
+			try(ResultSet keys = statement.getGeneratedKeys())
+			{
+				while(keys.next())
+				{
+					noteDetail.setId(keys.getLong(1));					
+				}
+			}
+			catch(SQLException ke)
+			{
+				ke.printStackTrace();
+			}
 		}
 		catch(SQLException e)
 		{

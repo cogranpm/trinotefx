@@ -71,6 +71,18 @@ public class MainController implements Initializable{
 		mng.ShowDialog(parentWin, newNoteBook);
 		this.refreshNotebooks();
 	}
+	
+	@FXML
+	private void handleNewNoteheader()
+	{
+		NoteBook selectedNotebook = lstNotebooks.getSelectionModel().getSelectedItem();
+		NoteHeader newNoteHeader = new NoteHeader(0l, selectedNotebook.getId(), "", "");
+		NoteHeaderEditDialogFactory mng = new NoteHeaderEditDialogFactory();
+		Scene parentScene = btnNewNoteHeader.getScene();
+		Window parentWin = parentScene.getWindow();
+		mng.ShowDialog(parentWin, newNoteHeader);
+		this.refreshNoteheaders(selectedNotebook.getId());
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -79,9 +91,7 @@ public class MainController implements Initializable{
 	 
 	       lstNotebooks.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
 	    	    if (newSelection != null) {
-	    	    	List<NoteHeader> noteheaders = Context.getInstance().getProvider().getNoteheaders(newSelection.getId());
-	    	        ObservableList<NoteHeader> lstUiNoteHeaders = FXCollections.observableList(noteheaders);
-	    	        lstNoteheaders.setItems(lstUiNoteHeaders);
+	    	    	this.refreshNoteheaders(newSelection.getId());
 	    	        this.btnNewNoteHeader.setDisable(false);
 	    	    }
 	    	});
@@ -126,10 +136,22 @@ public class MainController implements Initializable{
 	                        super.updateItem(t, bln);
 	                        if (t != null) {
 	                            setText(t.getName());
+	                            setOnMouseClicked((MouseEvent event) -> 
+	                            {
+	                            	if(event.getClickCount() > 1)
+	                            	{
+	                            		NoteHeaderEditDialogFactory mng = new NoteHeaderEditDialogFactory();
+	                            		Node eventSource = (Node)event.getSource();
+	                            		Scene parentScene = eventSource.getScene();
+	                            		Window parentWin = parentScene.getWindow();
+	                            		mng.ShowDialog(parentWin, lstNoteheaders.getSelectionModel().getSelectedItem());
+	                            	}
+	                            });
 	                        }
 	                        else
 	                        {
 	                        	setText("");
+	                        	setOnMouseClicked(null);
 	                        }
 	                    }	 
 	                };
@@ -183,6 +205,14 @@ public class MainController implements Initializable{
 	           }
 	       });
 	       */   
+	}
+	
+	private void refreshNoteheaders(Long noteBookId)
+	{
+    	List<NoteHeader> noteheaders = Context.getInstance().getProvider().getNoteheaders(noteBookId);
+        ObservableList<NoteHeader> lstUiNoteHeaders = FXCollections.observableList(noteheaders);
+        lstNoteheaders.setItems(lstUiNoteHeaders);
+		
 	}
 
 

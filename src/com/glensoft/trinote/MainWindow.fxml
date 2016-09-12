@@ -13,9 +13,20 @@
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.glensoft.trinote.MainController">
-  <top>
-     
-  </top>
+   <top>
+      <MenuBar fx:id="mnuMain" nodeOrientation="LEFT_TO_RIGHT" BorderPane.alignment="TOP_LEFT" useSystemMenuBar="true">
+        <menus>
+          <Menu fx:id="mnuFile" text="_File">
+            <items>
+              <MenuItem fx:id="mnuFileQuit" onAction="#handleFileMenuQuit" text="_Quit" />
+            </items>
+          </Menu>
+        </menus>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </MenuBar>
+   </top>
    <center>
       <SplitPane dividerPositions="0.32441471571906355, 0.6839464882943144" BorderPane.alignment="CENTER">
          <items>
@@ -49,7 +60,7 @@
                         </HBox>
                         <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="btnNewNoteHeader" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="29.0" prefWidth="36.0" text="+" HBox.hgrow="NEVER" />
+                              <Button fx:id="btnNewNoteHeader" alignment="CENTER" contentDisplay="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleNewNoteheader" prefHeight="29.0" prefWidth="36.0" text="+" HBox.hgrow="NEVER" />
                            </children>
                         </HBox>
                      </children>
@@ -80,18 +91,5 @@
          </items>
       </SplitPane>
    </center>
-   <top>
-      <MenuBar fx:id="mnuMain" BorderPane.alignment="TOP_LEFT">
-        <menus>
-          <Menu fx:id="mnuFile" text="_File">
-            <items>
-              <MenuItem fx:id="mnuFileQuit" onAction="#handleFileMenuQuit" text="_Quit" />
-            </items>
-          </Menu>
-        </menus>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-      </MenuBar>
-   </top>
+
 </BorderPane>
