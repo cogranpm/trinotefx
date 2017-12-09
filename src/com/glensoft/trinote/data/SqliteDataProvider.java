@@ -27,7 +27,7 @@ public class SqliteDataProvider {
 	public void Connect()
 	{
 		try {
-			connection = DriverManager.getConnection("jdbc:sqlite:/Users/paulm/Documents/StudyManager/StudyManager.db");
+			connection = DriverManager.getConnection("jdbc:sqlite:/home/paulm/Documents/Data/StudyManager/StudyManager.db");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
