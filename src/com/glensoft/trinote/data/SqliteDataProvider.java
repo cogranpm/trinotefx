@@ -181,9 +181,9 @@ public class SqliteDataProvider {
 		{
 			statement.setLong(1, noteDetail.getNoteHeaderId());
 			statement.setString(2, noteDetail.getName());
-			statement.setString(3, noteDetail.getSourceCode());
-			statement.setString(4, noteDetail.getComments());
-			statement.setString(5, noteDetail.getBody());
+			statement.setString(3, noteDetail.getComments());
+			statement.setString(4, noteDetail.getBody());
+			statement.setString(5, noteDetail.getSourceCode());
 			statement.executeUpdate();
 			try(ResultSet keys = statement.getGeneratedKeys())
 			{
