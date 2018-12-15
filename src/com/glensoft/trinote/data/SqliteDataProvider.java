@@ -48,7 +48,7 @@ public class SqliteDataProvider {
 	{
 		List<NoteBook> list = null;
 		try (Statement statement = connection.createStatement()){
-			try(ResultSet rs = statement.executeQuery("select id, name, comments from notebook order by name")){
+			try(ResultSet rs = statement.executeQuery("select id, name, comments from notebook order by upper(name)")){
 				list = EntityMapper.MapNoteBook(rs);				
 			}
 			
@@ -62,7 +62,7 @@ public class SqliteDataProvider {
 	public List<NoteHeader> getNoteheaders(Long notebookid)
 	{
 		List<NoteHeader> list = null;
-		try (PreparedStatement statement = connection.prepareStatement("select id, notebookid, name, comments from noteheader where notebookid = ? order by name")){
+		try (PreparedStatement statement = connection.prepareStatement("select id, notebookid, name, comments from noteheader where notebookid = ? order by upper(name)")){
 			statement.setLong(1, notebookid);
 			try(ResultSet rs = statement.executeQuery()){
 				list = EntityMapper.MapNoteHeader(rs);				
@@ -77,7 +77,7 @@ public class SqliteDataProvider {
 	public List<NoteDetail> getNotedetails(Long noteheaderid)
 	{
 		List<NoteDetail> list = null;
-		try (PreparedStatement statement = connection.prepareStatement("select id, noteheaderid, name, comments, body, sourcecode from notedetail where noteheaderid = ? order by name")){
+		try (PreparedStatement statement = connection.prepareStatement("select id, noteheaderid, name, comments, body, sourcecode from notedetail where noteheaderid = ? order by upper(name)")){
 			statement.setLong(1, noteheaderid);
 			try(ResultSet rs = statement.executeQuery()){
 				list = EntityMapper.MapNoteDetail(rs);				
